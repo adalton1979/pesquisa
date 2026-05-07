@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Sistema de Pesquisa de Marketing{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4><i class="fas fa-tachometer-alt"></i> Dashboard</h4>
+            </div>
+            <div class="card-body">
+                <p class="lead">Bem-vindo, {{ usuario }}!</p>
+                <p>Use o menu de navegação para acessar as funcionalidades do sistema.</p>
+
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <i class="fas fa-plus fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Registro</h5>
+                                <p class="card-text">Registrar novos clientes</p>
+                                <a href="{{ url_for('registro') }}" class="btn btn-primary">Acessar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <i class="fas fa-list fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Visualização</h5>
+                                <p class="card-text">Visualizar e gerenciar clientes</p>
+                                <a href="{{ url_for('visualizacao') }}" class="btn btn-success">Acessar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <i class="fas fa-chart-bar fa-3x text-info mb-3"></i>
+                                <h5 class="card-title">Relatórios</h5>
+                                <p class="card-text">Gerar relatórios e gráficos</p>
+                                <a href="{{ url_for('relatorios') }}" class="btn btn-info">Acessar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

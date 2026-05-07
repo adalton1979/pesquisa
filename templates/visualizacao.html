@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Visualização de Clientes - Sistema de Pesquisa de Marketing{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h4><i class="fas fa-list"></i> Visualização de Clientes</h4>
+                <form method="post" action="{{ url_for('buscar') }}" class="d-flex">
+                    <input type="text" class="form-control me-2" name="termo" placeholder="Buscar..." value="{{ termo or '' }}">
+                    <button type="submit" class="btn btn-light">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Origem</th>
+                                <th>Região Origem</th>
+                                <th>Contrato</th>
+                                <th>Atendente</th>
+                                <th>Data Cadastro</th>
+                                <th>Data Pesquisa</th>
+                                <th>Observações</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cliente in clientes %}
+                            <tr>
+                                <td>{{ cliente.id }}</td>
+                                <td>{{ cliente.nome }}</td>
+                                <td>{{ cliente.origem }}</td>
+                                <td>{{ cliente.regiao_origem }}</td>
+                                <td>{{ cliente.contrato }}</td>
+                                <td>{{ cliente.atendente }}</td>
+                                <td>{{ cliente.data_cadastro }}</td>
+                                <td>{{ cliente.data_pesquisa }}</td>
+                                <td>{{ cliente.observacoes }}</td>
+                                <td>
+                                    <a href="{{ url_for('editar', id=cliente.id) }}" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                    <a href="{{ url_for('excluir', id=cliente.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">
+                                        <i class="fas fa-trash"></i> Excluir
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if not clientes %}
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> Nenhum cliente encontrado.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Relatórios - Sistema de Pesquisa de Marketing{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4><i class="fas fa-chart-bar"></i> Relatórios</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-table fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Relatório Geral</h5>
+                                <p class="card-text">Visualizar todos os clientes em tabela</p>
+                                <a href="{{ url_for('relatorio_geral') }}" class="btn btn-primary">Ver Relatório</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-chart-pie fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Gráfico por Origem</h5>
+                                <p class="card-text">Visualizar distribuição de clientes por origem</p>
+                                <a href="{{ url_for('grafico_origem') }}" class="btn btn-success">Ver Gráfico</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-calendar fa-3x text-warning mb-3"></i>
+                                <h5 class="card-title">Relatório Mensal</h5>
+                                <p class="card-text">Visualizar clientes por mês</p>
+                                <a href="{{ url_for('relatorio_mensal') }}" class="btn btn-warning">Ver Relatório</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-map fa-3x text-danger mb-3"></i>
+                                <h5 class="card-title">Relatório por Origem</h5>
+                                <p class="card-text">Distribuição de clientes por origem</p>
+                                <a href="{{ url_for('relatorio_origem') }}" class="btn btn-danger">Ver Relatório</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-calendar-days fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Relatório Mensal por Origem</h5>
+                                <p class="card-text">Quantidade de clientes por origem, mês a mês</p>
+                                <a href="{{ url_for('relatorio_origem_mensal') }}" class="btn btn-primary">Ver Relatório</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-user-tie fa-3x text-info mb-3"></i>
+                                <h5 class="card-title">Relatório por Atendente</h5>
+                                <p class="card-text">Performance de cada atendente</p>
+                                <a href="{{ url_for('relatorio_atendente') }}" class="btn btn-info">Ver Relatório</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Progresso Mês a Mês</h5>
+                                <p class="card-text">Evolução acumulada de clientes</p>
+                                <a href="{{ url_for('relatorio_progresso') }}" class="btn btn-success">Ver Relatório</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-file-excel fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Exportar para Excel</h5>
+                                <p class="card-text">Baixar todos os dados em planilha Excel</p>
+                                <a href="{{ url_for('exportar_excel') }}" class="btn btn-success">Exportar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-upload fa-3x text-secondary mb-3"></i>
+                                <h5 class="card-title">Importar de Excel</h5>
+                                <p class="card-text">Importar dados de planilha Excel</p>
+                                <button class="btn btn-secondary" onclick="alert('Funcionalidade em desenvolvimento')">
+                                    <i class="fas fa-upload"></i> Importar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

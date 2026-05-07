@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Registro de Cliente - Sistema de Pesquisa de Marketing{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4><i class="fas fa-plus"></i> Registro de Cliente</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nome" class="form-label">Nome do Cliente *</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required style="text-transform: uppercase;">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="origem" class="form-label">Origem *</label>
+                            <select class="form-select" id="origem" name="origem" required>
+                                <option value="">Selecione...</option>
+                                {% for origem in origens %}
+                                <option value="{{ origem }}">{{ origem }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="regiao_origem" class="form-label">Região Origem *</label>
+                            <input type="text" class="form-control" id="regiao_origem" name="regiao_origem" required style="text-transform: uppercase;">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="contrato" class="form-label">Contrato *</label>
+                            <input type="text" class="form-control" id="contrato" name="contrato" required style="text-transform: uppercase;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="data_pesquisa" class="form-label">Data da Pesquisa *</label>
+                            <input type="date" class="form-control" id="data_pesquisa" name="data_pesquisa" required>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="observacoes" class="form-label">Observações</label>
+                            <textarea class="form-control" id="observacoes" name="observacoes" rows="3" style="text-transform: uppercase;"></textarea>
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Registrar Cliente
+                        </button>
+                    </div>
+                </form>
+                
+                <hr class="my-4">
+                
+                <div class="text-center">
+                    <a href="{{ url_for('gerenciar_origens') }}" class="btn btn-outline-warning">
+                        <i class="fas fa-map-marker-alt"></i> Gerenciar Origens
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Transformar inputs para maiúsculo
+    document.querySelectorAll('input[type="text"], textarea').forEach(function(el) {
+        el.addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+    });
+});
+</script>
+{% endblock %}

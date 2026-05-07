@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Origens - Sistema de Pesquisa de Marketing{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-warning text-dark">
+                <h4><i class="fas fa-map-marker-alt"></i> Gerenciar Origens</h4>
+            </div>
+            <div class="card-body">
+                <!-- Formulário para adicionar nova origem -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <form method="post" action="{{ url_for('adicionar_origem') }}" class="d-flex">
+                            <input type="text" class="form-control me-2" name="nome_origem" placeholder="Digite o nome da nova origem" required style="text-transform: uppercase;">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Lista de origens existentes -->
+                <h5>Origens Cadastradas</h5>
+                {% if origens %}
+                <div class="row">
+                    {% for origem in origens %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <h6 class="card-title mb-0">{{ origem.nome }}</h6>
+                                <button class="btn btn-sm btn-outline-danger" onclick="excluirOrigem({{ origem.id }}, '{{ origem.nome }}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> Nenhuma origem cadastrada ainda.
+                </div>
+                {% endif %}
+
+                <div class="mt-4">
+                    <a href="{{ url_for('registro') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar ao Registro
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmação para exclusão -->
+<div class="modal fade" id="confirmarExclusaoModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Exclusão</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir a origem "<strong id="origemNome"></strong>"?</p>
+                <div class="alert alert-warning">
+                    <small><i class="fas fa-exclamation-triangle"></i> Esta ação não pode ser desfeita.</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a id="confirmarExclusaoBtn" href="#" class="btn btn-danger">Excluir</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function excluirOrigem(id, nome) {
+    document.getElementById('origemNome').textContent = nome;
+    document.getElementById('confirmarExclusaoBtn').href = '{{ url_for("excluir_origem", id=0) }}'.replace('0', id);
+    
+    const modal = new bootstrap.Modal(document.getElementById('confirmarExclusaoModal'));
+    modal.show();
+}
+</script>
+{% endblock %}
